@@ -1,18 +1,32 @@
-$(document).ready(function(){
+function buscaPokemon(){
+	var numPokemon = $('#input').val();
 
-	// The magic goes here
+	//for (var i = 0; i < 152; i++){
+	pokeUrl='https://pokeapi.co/api/v2/pokemon/' + numPokemon + '/';
+	getPokemon(pokeUrl)
+	//}
+}
+
+$(document).ready(function(){
+	})
+
+	var pokeUrl;
+function getPokemon(pokeUrl) {
+
+
+
 	var main = $('#main');
 	var pokemon;
 
 	$.ajax({
-		url: 'https://pokeapi.co/api/v2/pokemon/5/',
+		//url: 'https://pokeapi.co/api/v2/pokemon/5/',
+		url : pokeUrl,
 		type: 'GET',
 		dataType: 'JSON',
 		success: handleResponse
 	})
 
 function handleResponse(response){
-
 	pokemon = response;
 		var listItem = 
 		'<div class="pokemon-card">' +
@@ -30,13 +44,11 @@ function handleResponse(response){
 			'</div>' +
 		'</div>';
 		main.append(listItem);
-		showPokemon(pokemon)
 	
 }
 
-function showPokemon(pokemon){
-	console.log(pokemon.name)
 }
+
 
 	// if(response.success){
 	// 	var pokemon = response.forms;
@@ -53,7 +65,7 @@ function showPokemon(pokemon){
 	// } else {
 	// 	console.log('An error was ocurred when remote Datas were coming.');
 	// }
-});
+
 
 
 
